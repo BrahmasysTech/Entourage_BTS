@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
@@ -19,6 +21,7 @@ import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -39,7 +42,7 @@ public class PhotosFragment extends Fragment implements Refresh {
     private View mView;
     private CircularProgressBar mProgressBar;
     private ArrayList<Category> mCategoryArrayList;
-
+    Button create_category;
     public PhotosFragment() {
         // Required empty public constructor
     }
@@ -49,13 +52,76 @@ public class PhotosFragment extends Fragment implements Refresh {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_photos, container, false);
         ((TextView) mView.findViewById(R.id.photo_header_text)).setText("CATEGORIES");
+        create_category = (Button) mView.findViewById(R.id.create_category);
         mProgressBar = new CircularProgressBar(getActivity());
         mProgressBar.setCancelable(false);
+        if (Utility.getBoolean(getActivity(),Constant.ALLOW_CREATE_CATEGORY))
+        {
+            create_category.setVisibility(View.VISIBLE);
+        }
+
+        create_category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final android.app.Dialog mDialog = MyDialog.createCategory("Enter Category Name", getActivity());
+
+                (mDialog.findViewById(R.id.done)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mDialog.dismiss();
+                        if ((((EditText) mDialog.findViewById(R.id.et_category_name)).getText().toString().trim()).equalsIgnoreCase("")) {
+                            MyDialog.iPhone("Category name should not be blank!", getActivity());
+                        } else {
+                            mProgressBar.start();
+                            String url = Constant.CREATE_CATEGORY + ((EditText) mDialog.findViewById(R.id.et_category_name)).getText().toString().trim() + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY) + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID);
+                            Log.e(TAG, "Url: " + url);
+
+                            new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
+                                @Override
+                                public void callback(String url, JSONObject json, AjaxStatus status) {
+                                    Log.e(TAG, "Response: " + json);
+                                    if (json != null) {
+                                        try {
+                                            if (json.getString("status").equalsIgnoreCase("SUCCESS")) {
+                                                MyDialog.iPhone(json.getString("message"), getActivity());
+                                            } else {
+                                                MyDialog.iPhone(json.getString("message"), getActivity());
+                                            }
+
+                                            mProgressBar.stop();
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                            mProgressBar.stop();
+                                        }
+
+                                    } else {
+                                        mProgressBar.stop();
+                                        if (Utility.isConnectingToInternet()) {
+                                            MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
+
+                                        } else {
+                                            Utility.showInternetAlert(getActivity());
+                                        }
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+                });
+
+                (mDialog.findViewById(R.id.cancel)).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mDialog.dismiss();
+                    }
+                });
+            }
+        });
+
         getCategory();
         return mView;
     }
-
-
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

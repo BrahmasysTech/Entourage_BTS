@@ -44,17 +44,17 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-
-        if (position==0) {
-            StaggeredGridLayoutManager a = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL);
-
-            StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(480,300);
-            layoutParams.setFullSpan(true);
-            holder.itemView.setLayoutParams(layoutParams);
-
-
-
-        }
+//
+//        if (position==0) {
+//            StaggeredGridLayoutManager a = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.HORIZONTAL);
+//
+//            StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(480,300);
+//            layoutParams.setFullSpan(true);
+//            holder.itemView.setLayoutParams(layoutParams);
+//
+//
+//
+//        }
 //        if(position==1)
 //        {
 //            StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(200,200);

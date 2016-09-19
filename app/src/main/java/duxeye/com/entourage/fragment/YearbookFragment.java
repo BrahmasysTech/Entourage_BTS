@@ -1,6 +1,7 @@
 package duxeye.com.entourage.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 
 import duxeye.com.entourage.R;
 import duxeye.com.entourage.Utility.Utility;
+import duxeye.com.entourage.activity.LoginActivity;
 import duxeye.com.entourage.adapter.LadderYearBookAdapter;
 import duxeye.com.entourage.constant.Constant;
 import duxeye.com.entourage.customViews.CircularProgressBar;
@@ -95,61 +98,72 @@ public class YearbookFragment extends Fragment {
 
     private void getYearBook() {
         mProgressBar.start();
-        String url = Constant.YEARBOOK_LADDER + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
-//        Log.e(TAG, "Url: " + url);
-        new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
-            @Override
-            public void callback(String url, JSONObject json, AjaxStatus status) {
-//                Log.e(TAG, "Response : " + json);
-                if (json != null) {
-                    try {
-                        Utility.setSharedPreference(getActivity(),Constant.NUMBER_PAGES_PROD,json.getString("number_pages_prod"));
-                        mArrayList = new ArrayList<>();
-                        JSONArray mJsonArray = json.getJSONArray("pages");
-                        if (mJsonArray.length() > 0) {
-                            Log.e(TAG,"json Length: "+mJsonArray.length());
-                            for (int i = 0; i < mJsonArray.length(); i++) {
-                                mArrayList.add(new LadderYearBook(
-                                        mJsonArray.getJSONObject(i).getString("left_page_number"),
-                                        mJsonArray.getJSONObject(i).getString("left_page_label"),
-                                        mJsonArray.getJSONObject(i).getString("left_page_img"),
-                                        mJsonArray.getJSONObject(i).getString("left_page_height"),
-                                        mJsonArray.getJSONObject(i).getString("left_page_width"),
-                                        mJsonArray.getJSONObject(i).getString("left_wip_page_id"),
-                                        mJsonArray.getJSONObject(i).getString("left_page_title"),
-                                        mJsonArray.getJSONObject(i).getString("right_page_number"),
-                                        mJsonArray.getJSONObject(i).getString("right_page_label"),
-                                        mJsonArray.getJSONObject(i).getString("right_page_img"),
-                                        mJsonArray.getJSONObject(i).getString("right_page_height"),
-                                        mJsonArray.getJSONObject(i).getString("right_page_width"),
-                                        mJsonArray.getJSONObject(i).getString("right_wip_page_id"),
-                                        mJsonArray.getJSONObject(i).getString("right_page_title")));
-                            }
-//
-                            populatePhotoGrid();
-                            mProgressBar.stop();
 
+        if (Utility.getBoolean(getActivity(),Constant.ALLOW_YEARBOOK))
+           {
+            String url = Constant.YEARBOOK_LADDER + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
+//        Log.e(TAG, "Url: " + url);
+            new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
+                @Override
+                public void callback(String url, JSONObject json, AjaxStatus status) {
+//                Log.e(TAG, "Response : " + json);
+                    if (json != null) {
+                        try {
+                            Utility.setSharedPreference(getActivity(), Constant.NUMBER_PAGES_PROD, json.getString("number_pages_prod"));
+                            mArrayList = new ArrayList<>();
+                            JSONArray mJsonArray = json.getJSONArray("pages");
+                            if (mJsonArray.length() > 0) {
+                                Log.e(TAG, "json Length: " + mJsonArray.length());
+                                for (int i = 0; i < mJsonArray.length(); i++) {
+                                    mArrayList.add(new LadderYearBook(
+                                            mJsonArray.getJSONObject(i).getString("left_page_number"),
+                                            mJsonArray.getJSONObject(i).getString("left_page_label"),
+                                            mJsonArray.getJSONObject(i).getString("left_page_img"),
+                                            mJsonArray.getJSONObject(i).getString("left_page_height"),
+                                            mJsonArray.getJSONObject(i).getString("left_page_width"),
+                                            mJsonArray.getJSONObject(i).getString("left_wip_page_id"),
+                                            mJsonArray.getJSONObject(i).getString("left_page_title"),
+                                            mJsonArray.getJSONObject(i).getString("right_page_number"),
+                                            mJsonArray.getJSONObject(i).getString("right_page_label"),
+                                            mJsonArray.getJSONObject(i).getString("right_page_img"),
+                                            mJsonArray.getJSONObject(i).getString("right_page_height"),
+                                            mJsonArray.getJSONObject(i).getString("right_page_width"),
+                                            mJsonArray.getJSONObject(i).getString("right_wip_page_id"),
+                                            mJsonArray.getJSONObject(i).getString("right_page_title")));
+                                }
+//
+                                populatePhotoGrid();
+                                mProgressBar.stop();
+
+
+                            } else {
+                                mProgressBar.stop();
+                                MyDialog.iPhone("No Yearbook Found!", getActivity());
+
+                            }
+                        } catch (Exception e) {
+                            mProgressBar.stop();
+                            e.printStackTrace();
+                        }
+                    } else {
+                        mProgressBar.stop();
+                        if (Utility.isConnectingToInternet()) {
+                            MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
 
                         } else {
-                            mProgressBar.stop();
-                            MyDialog.iPhone("No Yearbook Found!", getActivity());
-
+                            Utility.showInternetAlert(getActivity());
                         }
-                    } catch (Exception e) {
-                        mProgressBar.stop();
-                        e.printStackTrace();
-                    }
-                } else {
-                    mProgressBar.stop();
-                    if (Utility.isConnectingToInternet()) {
-                        MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
-
-                    } else {
-                        Utility.showInternetAlert(getActivity());
                     }
                 }
-            }
-        });
+            });
+        }
+        else
+        {
+
+            mProgressBar.stop();
+          //  MyDialog.Yearbook_permissions("You are not allowed here \n because you don't have permissions...!", getActivity());
+          //  Toast.makeText(getActivity(), "You are not allowed...! ", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

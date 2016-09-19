@@ -331,8 +331,10 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
     }
 
     private void selectImageFromGalleryFragment() {
-        Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
-        startActivityForResult(i, 200);
+
+         Intent i = new Intent(Action.ACTION_MULTIPLE_PICK);
+         i.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
+         startActivityForResult(i, 200);
     }
 
     @Override
@@ -348,10 +350,11 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
                 e.printStackTrace();
             }
             for (int i = 0; i < imagesPath.length; i++) {
-                Log.e(TAG, "Uri: " + imagesPath[i]);
-                imagesPathList.add(imagesPath[i]);
-            }
+                //Log.e(TAG, "Uri: " + imagesPath[i]);
 
+                imagesPathList.add(imagesPath[i]);
+        }
+            Log.w("IMAGE PATHS:",String.valueOf(imagesPathList));
             Utility.saveImageArrayList(getActivity(), Constant.IMAGE_ARRAY_LIST, imagesPathList);
             refreshSelectedImage();
         }

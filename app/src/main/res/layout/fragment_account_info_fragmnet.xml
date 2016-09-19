@@ -25,6 +25,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fastScrollEnabled="true"
+        android:scrollbars="vertical"
+        android:id="@+id/scrollView"
         android:layout_below="@+id/account_header">
 
         <LinearLayout
@@ -164,7 +167,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="@color/textColor" />
 
-            <android.support.v7.widget.RecyclerView
+            <duxeye.com.entourage.customViews.NonscrollRecylerview
+
                 android:id="@+id/rv_yearbooks"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
@@ -172,7 +176,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_height="wrap_content">
 
-            </android.support.v7.widget.RecyclerView>
+            </duxeye.com.entourage.customViews.NonscrollRecylerview>
 
             <!--<RelativeLayout
                 android:layout_width="match_parent"

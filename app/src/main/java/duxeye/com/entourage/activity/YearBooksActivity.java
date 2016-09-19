@@ -68,6 +68,7 @@ public class YearBooksActivity extends AppCompatActivity {
             public void onYearBookClick(YearBook yearBook) {
                 Utility.setSharedPreference(mActivity, Constant.YEARBOOKID, yearBook.getYearBookId());
                 Utility.setSharedPreference(mActivity, Constant.YEARBOOK_NAME, yearBook.getYearBookName());
+
                 //new MySQLiteHelper(mActivity).saveYearBook(yearBook.getYearBookId(),yearBook.getYearBookName());
                 getMemberPermission();
             }

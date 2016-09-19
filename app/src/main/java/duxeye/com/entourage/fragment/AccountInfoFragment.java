@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import duxeye.com.entourage.constant.Constant;
 import duxeye.com.entourage.customViews.CircularProgressBar;
 import duxeye.com.entourage.customViews.CustomTextView;
 import duxeye.com.entourage.customViews.MyDialog;
+import duxeye.com.entourage.customViews.NonscrollRecylerview;
 import duxeye.com.entourage.model.Carousel;
 import duxeye.com.entourage.model.ResultFromDBSearchSchool;
 import duxeye.com.entourage.model.SearchSchool;
@@ -69,7 +71,13 @@ public class AccountInfoFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_account_info_fragmnet, container, false);
         mChangeTab = (ChangeTab) getActivity();
         init();
-
+        final ScrollView scrollview = ((ScrollView) mView.findViewById(R.id.scrollView));
+        scrollview.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollview.fullScroll(ScrollView.FOCUS_UP);
+            }
+        });
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -278,7 +286,7 @@ public class AccountInfoFragment extends Fragment {
     }
 
     private void populateRecycler() {
-        RecyclerView searchResultRecyclerView = (RecyclerView) mView.findViewById(R.id.rv_yearbooks);
+        NonscrollRecylerview searchResultRecyclerView = (NonscrollRecylerview) mView.findViewById(R.id.rv_yearbooks);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         searchResultRecyclerView.setLayoutManager(mLayoutManager);
         searchResultRecyclerView.setItemAnimator(new DefaultItemAnimator());

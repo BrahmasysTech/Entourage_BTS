@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
@@ -36,13 +39,20 @@ public class ApplicationController extends Application {
             File cacheDir = StorageUtils.getOwnCacheDirectory(sInstance.getBaseContext(), CACHE_DIR);
 
             DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                    .cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY)
+                    .cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
+                    .delayBeforeLoading(100)
                     .bitmapConfig(Bitmap.Config.RGB_565).build();
 
             ImageLoaderConfiguration.Builder builder = new ImageLoaderConfiguration.Builder(sInstance.getBaseContext())
+
                     .defaultDisplayImageOptions(defaultOptions)
                     .discCache(new UnlimitedDiscCache(cacheDir))
-                    .memoryCache(new WeakMemoryCache());
+                    .memoryCache(new WeakMemoryCache())
+                    .threadPoolSize(10)
+                    .threadPriority(Thread.NORM_PRIORITY - 2)
+                    .denyCacheImageMultipleSizesInMemory()
+                    .memoryCacheSize(2 * 1024 * 1024)
+                    .denyCacheImageMultipleSizesInMemory();
 
             ImageLoaderConfiguration config = builder.build();
             imageLoader = ImageLoader.getInstance();

@@ -1,6 +1,7 @@
 package duxeye.com.entourage.fragment;
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,12 +10,15 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -41,13 +45,18 @@ public class GridPhotoFragment extends Fragment {
     private static final String TAG = GridPhotoFragment.class.getSimpleName();
     private View mView;
     private ImageView backButton;
-    private ArrayList<PhotoGrid> mPhotoGridArrayList;
+    public ArrayList<PhotoGrid> mPhotoGridArrayList;
     private CircularProgressBar mProgressBar;
     private RelativeLayout noImageFoundLayout;
     private GridLayoutManager gridLayoutManagerVertical;
+
+    public static final String CATEGORY_ID = "category_id";
+    SharedPreferences category_id;
+    SharedPreferences.Editor edit_category_id;
     public GridPhotoFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -59,9 +68,13 @@ public class GridPhotoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 photoFragment();
+                edit_category_id.clear();
+                edit_category_id.commit();
             }
         });
 
+        category_id = getActivity().getSharedPreferences(CATEGORY_ID,getActivity().MODE_PRIVATE);
+        edit_category_id = category_id.edit();
         return mView;
     }
 
@@ -71,6 +84,7 @@ public class GridPhotoFragment extends Fragment {
         noImageFoundLayout.setVisibility(View.GONE);
         backButton = (ImageView) mView.findViewById(R.id.iv_back);
         mProgressBar = new CircularProgressBar(getActivity());
+
         mProgressBar.setCancelable(false);
         getImagesInCategory();
         gridLayoutManagerVertical =new GridLayoutManager(getActivity(),3,LinearLayoutManager.VERTICAL,false);
@@ -95,6 +109,25 @@ public class GridPhotoFragment extends Fragment {
     }
 
     private void populatePhotoGrid(){
+
+//
+//        RecyclerView photoGridView = (RecyclerView) mView.findViewById(R.id.photo_rv_category);
+//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(),3);
+//        photoGridView.setLayoutManager(mLayoutManager);
+//        photoGridView.setItemAnimator(new DefaultItemAnimator());
+//        photoGridView.setAdapter(new PhotoGridAdapter(getActivity(),mPhotoGridArrayList, new PhotoGridAdapter.ItemClickListener() {
+//            @Override
+//            public void onPhotoClick(PhotoGrid mPhotoGrid,int position) {
+//                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID,mPhotoGrid.getPhotoId());
+//                Utility.setSharedPreference(getActivity(),Constant.CURRENT_PAGE_INDEX,""+position+"");
+//                photoDetailsFragment();
+//
+//            }
+//        }));
+
+
+
+
         RecyclerView photoGridView = (RecyclerView) mView.findViewById(R.id.photo_rv_category);
 //        GridLayoutManager manager = new GridLayoutManager(this, 3);
 //        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -125,28 +158,30 @@ public class GridPhotoFragment extends Fragment {
             photoGridView.setLayoutManager(mLayoutManager);
             photoGridView.setItemAnimator(new
 
-            DefaultItemAnimator()
+                            DefaultItemAnimator()
 
             );
             photoGridView.setAdapter(new
 
-            PhotoGridAdapter(getActivity(),mPhotoGridArrayList,
+                    PhotoGridAdapter(getActivity(), mPhotoGridArrayList,
 
-            new PhotoGridAdapter.ItemClickListener()
+                    new PhotoGridAdapter.ItemClickListener()
 
-            {
-                @Override
-                public void onPhotoClick (PhotoGrid mPhotoGrid,int position){
-                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
-                Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
-                photoDetailsFragment();
+                    {
+                        @Override
+                        public void onPhotoClick(PhotoGrid mPhotoGrid, int position) {
+                            //Toast.makeText(getActivity(), mPhotoGrid.getPhotoId(), Toast.LENGTH_SHORT).show();
+                            Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
+                            Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
+                            photoDetailsFragment();
 
-            }
-            }
+                        }
+                    }
 
             ));
 
         }
+
 
 
     private void getImagesInCategory(){
@@ -165,13 +200,17 @@ public class GridPhotoFragment extends Fragment {
                         //((TextView) mView.findViewById(R.id.grid_photo_header_text)).setText(json.getString("category_name"));
                         for(int i=0; i<jsonArray.length(); i++){
 
+                            edit_category_id.putString("id_"+i,jsonArray.getJSONObject(i).getString("category_photo_id"));
+                            edit_category_id.putInt("length", jsonArray.length());
                             mPhotoGridArrayList.add(new PhotoGrid(
                                     jsonArray.getJSONObject(i).getString("category_photo_id"),
                                     jsonArray.getJSONObject(i).getString("name"),
-                                    jsonArray.getJSONObject(i).getString("image").replace("[","%5B").replace("]","%5D"),
+                                    jsonArray.getJSONObject(i).getString("image").replace("[", "%5B").replace("]", "%5D"),
                                     jsonArray.getJSONObject(i).getString("height"),
                                     jsonArray.getJSONObject(i).getString("width")));
+                            //Log.w("CATEGORY_ID:", jsonArray.getJSONObject(i).getString("category_photo_id"));
                         }
+                        edit_category_id.commit();
 
                         if(mPhotoGridArrayList.size() > 0) {
                             noImageFoundLayout.setVisibility(View.GONE);
@@ -198,5 +237,9 @@ public class GridPhotoFragment extends Fragment {
                 }
             }
         });
+
+
+
+
     }
 }
