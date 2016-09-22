@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,6 +93,7 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.MyVi
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onPhotoClick(mPhotoGrid,position);
+                    Log.e("Position:",String.valueOf(position));
                 }
             });
         }

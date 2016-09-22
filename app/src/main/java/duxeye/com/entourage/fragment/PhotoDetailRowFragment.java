@@ -51,11 +51,8 @@ public class PhotoDetailRowFragment extends Fragment {
         mView = inflater.inflate(R.layout.row_photo_details, container, false);
         init();
 
-
-
-
-
-        setImageAndText(getArguments().getString("photoID"));
+       // setImageAndText(getArguments().getString("photoID"));
+         setImageAndText();
 
         penImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,6 +159,7 @@ public class PhotoDetailRowFragment extends Fragment {
         bigImageView = (ImageView) mView.findViewById(R.id.iv_big_image);
 
         captionEditText = (EditText) mView.findViewById(R.id.et_caption);
+        captionEditText = (EditText) mView.findViewById(R.id.et_caption);
         captionEditText.setTextColor(getActivity().getResources().getColor(R.color.textColor));
 
 
@@ -178,8 +176,8 @@ public class PhotoDetailRowFragment extends Fragment {
     }
 
 
-    public void setImageAndText(String photoID) {
-        String url = Constant.PHOTO_DETAILS + photoID + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
+    public void setImageAndText() {
+        String url = Constant.PHOTO_DETAILS + Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID) + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
 //        Log.e(TAG, "Url: " + url);
         new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
             @Override
@@ -195,13 +193,15 @@ public class PhotoDetailRowFragment extends Fragment {
                         next_photo_id = json.getString("next_photo_id");
                         prior_photo_id = json.getString("prior_photo_id");
                         category_photo_id = json.getString("category_photo_id");
-                        LoadImage.load(getActivity(),json.getString("image").replace("[", "%5B").replace("]", "%5D"),bigImageView);
-
+                        LoadImage.load(getActivity(), json.getString("image").replace("[", "%5B").replace("]", "%5D"), bigImageView);
 
 
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                    Utility.setSharedPreference(getActivity(), Constant.NEXT_PHOTO_ID, next_photo_id);
+                    Utility.setSharedPreference(getActivity(), Constant.PRIOR_PHOTO_ID, prior_photo_id);
 
                 } else {
                     if (Utility.isConnectingToInternet()) {
@@ -213,5 +213,7 @@ public class PhotoDetailRowFragment extends Fragment {
                 }
             }
         });
+
+
     }
 }

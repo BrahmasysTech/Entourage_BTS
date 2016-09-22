@@ -139,6 +139,7 @@ public class PhotosFragment extends Fragment implements Refresh {
             @Override
             public void callback(String url, JSONArray json, AjaxStatus status) {
 //                Log.e(TAG,"Response: "+json);
+                mCategoryArrayList.clear();
                 if(json != null){
                     try{
                         for(int i=0; i<json.length(); i++){
@@ -150,6 +151,8 @@ public class PhotosFragment extends Fragment implements Refresh {
                                     json.getJSONObject(i).getString("name")));
                         }
 
+
+                        Log.e("LIST OF Categories:",String.valueOf(mCategoryArrayList));
                         if(mCategoryArrayList.size() > 0) {
                             populateCategoryRecyclerView();
                         }else{
@@ -187,6 +190,7 @@ public class PhotosFragment extends Fragment implements Refresh {
                 Utility.setSharedPreference(getActivity(),Constant.CATEGORY_ID,mCategory.getId());
                 Utility.setSharedPreference(getActivity(),Constant.PHOTO_COUNT,mCategory.getCount());
                 photoGridFragment();
+                Log.e("Selected Category:", String.valueOf(mCategory.getId())+"\n"+String.valueOf(mCategory.getCount()));
 
             }
         }));

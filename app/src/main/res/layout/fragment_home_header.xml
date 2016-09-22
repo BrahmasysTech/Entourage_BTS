@@ -25,7 +25,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/imagebg"
-        android:padding="5dp">
+        android:paddingBottom="5dp">
 
         <com.daimajia.slider.library.SliderLayout
             android:id="@+id/slider"

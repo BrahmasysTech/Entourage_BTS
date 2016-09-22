@@ -69,7 +69,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (position != 0) {
             HomeNewsFeedAdapter holder = (HomeNewsFeedAdapter) viewHolder;
             try {
-                holder.bind(newsFeedArrayList.get(position-1), newsFeedCallback,mActivity);
+
+                    holder.bind(newsFeedArrayList.get(position - 1), newsFeedCallback, mActivity);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xml.sax.Parser;
+
 import java.util.ArrayList;
 
 import duxeye.com.entourage.R;
@@ -49,6 +51,23 @@ public class PhotoDetailsFragment extends Fragment {
 //    private Matrix matrix = new Matrix();
 //    private float scale = 1f;
 
+
+
+    private int scroll = 0;
+    // set only on `onPageSelected` use it in `onPageScrolled`
+    // if currentPage < page - we swipe from left to right
+    // if currentPage == page - we swipe from right to left  or centered
+    private int currentPage = 0;
+    // if currentPage < page offset goes from `screen width` to `0`
+    // as you reveal right fragment.
+    // if currentPage == page , offset goes from `0` to `screen width`
+    // as you reveal right fragment
+    // You can use it to see
+    //if user continue to reveal next fragment or moves it back
+    private int currentOffset = 0;
+    // behaves similar to offset in range `[0..1)`
+    private float currentScale = 0;
+
     public PhotoDetailsFragment() {
         // Required empty public constructor
     }
@@ -60,19 +79,34 @@ public class PhotoDetailsFragment extends Fragment {
 
         init();
         total = Integer.parseInt(Utility.getSharedPreferences(getActivity(), Constant.PHOTO_COUNT));
-        mPhotoGridArrayList = new ArrayList<>();
-        category_id = getActivity().getSharedPreferences(CATEGORY_ID, getActivity().MODE_PRIVATE);
-        edit_category_id = category_id.edit();
+       // lastPosition = Integer.parseInt(Utility.getSharedPreferences(getActivity(), Constant.CURRENT_PAGE_INDEX));
 
-       Photo_Id = Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID);
-        for (int i =0;i<category_id.getInt("length",0);i++)
-        {
-            mPhotoGridArrayList.add(category_id.getString("id_"+i,"null"));
-
-        }
+//        mPhotoGridArrayList = new ArrayList<>();
+//        category_id = getActivity().getSharedPreferences(CATEGORY_ID, getActivity().MODE_PRIVATE);
+//        edit_category_id = category_id.edit();
+//        mPhotoGridArrayList.clear();
+//
+//        for (int i =0;i<category_id.getInt("length",0);i++)
+//        {
+//            mPhotoGridArrayList.add(category_id.getString("id_"+i,"null"));
+//
+//        }
+//        Log.w("ARRAY LIST:",String.valueOf(mPhotoGridArrayList));
+//        for (int j=0;j<category_id.getInt("length",0);j++)
+//        {
+//            if (Utility.getSharedPreferences(getActivity(), Constant.CURRENT_PAGE_INDEX).equals(String.valueOf(mPhotoGridArrayList.indexOf(mPhotoGridArrayList.get(j))))) {
+//                Photo_Id = mPhotoGridArrayList.get(j);
+//            }
+//        }
         mView.findViewById(R.id.iv_pd_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                edit_category_id.clear();
+//                edit_category_id.commit();
+//
+//                mPhotoGridArrayList.clear();
+               // Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, "");
+           //     Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "");
                 photoGridFragment();
 
 
@@ -80,78 +114,70 @@ public class PhotoDetailsFragment extends Fragment {
             }
         });
 
+
+
+
+
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (position == total - 1) {
-                    chageImage = true;
-                    setPos = 1;
-                } else if (position == 0) {
-                    chageImage = true;
-                    setPos = total - 2;
-                } else {
-                    chageImage = false;
+//                if (position == total - 1) {
+//                    chageImage = true;
+//                    setPos = 1;
+//                } else if (position == 0) {
+//                    chageImage = true;
+//                    setPos = total - 2;
+//                } else {
+//                    chageImage = false;
+//                }
+
+                if(lastPosition>position)
+                {//User Move to left
+
+
+                    if (Utility.getSharedPreferences(getActivity(), Constant.PRIOR_PHOTO_ID).equalsIgnoreCase("")) {
+                        //Toast.makeText(getActivity(), "You are at 1st photo", Toast.LENGTH_SHORT).show();
+
+
+                     } else {
+                        Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Utility.getSharedPreferences(getActivity(), Constant.PRIOR_PHOTO_ID));
+
+                    }
+
+                //   Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Utility.getSharedPreferences(getActivity(), Constant.PRIOR_PHOTO_ID));
+                    Log.e("scroll", "left" + Utility.getSharedPreferences(getActivity(), Constant.PRIOR_PHOTO_ID));
                 }
+                else if(lastPosition<position)
+                { //User Move to right
+
+
+
+                    if (Utility.getSharedPreferences(getActivity(), Constant.NEXT_PHOTO_ID).equalsIgnoreCase("")) {
+                     //  Toast.makeText(getActivity(), "No more next", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Utility.getSharedPreferences(getActivity(), Constant.NEXT_PHOTO_ID));
+                    }
+
+                  //  Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Utility.getSharedPreferences(getActivity(), Constant.NEXT_PHOTO_ID));
+                    Log.e("scroll", "right" + Utility.getSharedPreferences(getActivity(), Constant.NEXT_PHOTO_ID));
+                }
+                lastPosition=position;
+
             }
 
             @Override
             public void onPageSelected(int position) {
 
 
-                if (lastPosition > position) {
-                    /**
-                     * Left
-                     */
-                    for (int j = 0; j < category_id.getInt("length", 0); j++) {
-                        if (Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID).equals(mPhotoGridArrayList.get(j))) {
-                            if (j > 0) {
-                                Photo_Id = mPhotoGridArrayList.get(j - 1);
-                                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Photo_Id);
-//                        int postition_id = mPhotoGridArrayList.indexOf(j);
-//                        Toast.makeText(getActivity(), String.valueOf(postition_id), Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Photo_Id = mPhotoGridArrayList.get(category_id.getInt("length", 0) - 1);
-                                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Photo_Id);
-                            }
-                        }
-                    }
-                   // Toast.makeText(getActivity(), "left", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Left");
+                currentPage = position;
+                currentScale = 0;
+                currentOffset = 0;
+                scroll = 0;
 
-                } else if (lastPosition <  position) {
-                    /**
-                     * Right
-                     */
-
-//                    for (int j=0;j<category_id.getInt("length",0)-1;j++)
-//                    {
-//                        if(mPhotoGridArrayList.get(j).equals(Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID)))
-//                        {
-//                            if (j>=0 && j<category_id.getInt("length",0)-1) {
-//                                Photo_Id = mPhotoGridArrayList.get(j+1);
-//                                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Photo_Id);
-////                        int postition_id = mPhotoGridArrayList.indexOf(j);
-////                        Toast.makeText(getActivity(), String.valueOf(postition_id), Toast.LENGTH_SHORT).show();
-//                            }
-//                            else
-//                            {
-//                                Photo_Id = mPhotoGridArrayList.get(category_id.getInt("length",0)-2-j);
-//                                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Photo_Id);
-//                            }
-//                        }
-//                        else
-//                        {
-//                            Photo_Id = mPhotoGridArrayList.get(j);
-//                            Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, Photo_Id);
-//                        }
-//                    }
-
-                   // Toast.makeText(getActivity(), "Right", Toast.LENGTH_SHORT).show();
-                    lastPosition = position;
-                    Log.e(TAG, "Right");
-                }
 
             }
 
@@ -160,124 +186,15 @@ public class PhotoDetailsFragment extends Fragment {
 
                 if (state == ViewPager.SCROLL_STATE_IDLE && chageImage) {
                     mViewPager.setCurrentItem(setPos, false);
+
                 }
+
+
 
             }
         });
-        mViewPager.setCurrentItem(1);
-//        captionEditText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                captionEditText.setCursorVisible(true);
-//            }
-//        });
-//        penImageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (Utility.getBoolean(getActivity(), Constant.ALLOW_CAPTION)) {
-//                    if (!captionEditText.getText().toString().trim().equalsIgnoreCase("")) {
-//                        captionEditText.setCursorVisible(false);
-//                        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-//                        captionEditText.setTextColor(getActivity().getResources().getColor(R.color.colorPrimaryDark));
-//                        updateCaption(captionEditText.getText().toString());
-//                    } else {
-//                        MyDialog.iPhone("Photo caption should not be empty!", getActivity());
-//                    }
-////                    Log.e(TAG,"Button click");
-//
-//                } else {
-//                    MyDialog.iPhone("You are not allowed to update photo caption!", getActivity());
-//                }
-//
-//
-//            }
-//        });
+        mViewPager.setCurrentItem(Integer.parseInt(Utility.getSharedPreferences(getActivity(), Constant.CURRENT_PAGE_INDEX))+1);
 
-//        mPhotoLayout.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
-//            public void onSwipeRight() {
-//                captionEditText.setCursorVisible(false);
-////                Toast.makeText(getActivity(), "right", Toast.LENGTH_SHORT).show();
-//                if (prior_photo_id.equalsIgnoreCase("")) {
-//                    Toast.makeText(getActivity(), "You are at 1st photo", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    String url = Constant.PHOTO_DETAILS + prior_photo_id + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
-////                    Log.e(TAG, "Url: " + url);
-//                    new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
-//                        @Override
-//                        public void callback(String url, JSONObject json, AjaxStatus status) {
-////                            Log.e(TAG, "Response: " + json);
-//                            if (json != null) {
-//                                try {
-//                                    imageNameTextView.setText(json.getString("photo_file"));
-//                                    fromTextView.setText(json.getString("uploaded_by"));
-//                                    captionEditText.setText(json.getString("photo_caption").trim());
-//                                    sizeTextView.setText(json.getString("exphoto_width") + " * " + json.getString("exphoto_height"));
-//                                    dateTextView.setText(json.getString("create_date"));
-//                                    next_photo_id = json.getString("next_photo_id");
-//                                    prior_photo_id = json.getString("prior_photo_id");
-//                                    category_photo_id = json.getString("category_photo_id");
-//                                    Picasso.with(getActivity()).load(json.getString("image").replace("[", "%5B").replace("]", "%5D")).into(bigImageView);
-//
-//
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
-//
-//                            } else {
-//                                if (Utility.isConnectingToInternet()) {
-//                                    MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
-//
-//                                } else {
-//                                    Utility.showInternetAlert(getActivity());
-//                                }
-//                            }
-//                        }
-//                    });
-//                }
-//            }
-//
-//            public void onSwipeLeft() {
-//                captionEditText.setCursorVisible(false);
-////                Toast.makeText(getActivity(), "left", Toast.LENGTH_SHORT).show();
-//                if (next_photo_id.equalsIgnoreCase("")) {
-//                    Toast.makeText(getActivity(), "No more next", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    String url = Constant.PHOTO_DETAILS + next_photo_id + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
-////                    Log.e(TAG, "Url: " + url);
-//                    new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
-//                        @Override
-//                        public void callback(String url, JSONObject json, AjaxStatus status) {
-////                            Log.e(TAG, "Response: " + json);
-//                            if (json != null) {
-//                                try {
-//                                    imageNameTextView.setText(json.getString("photo_file"));
-//                                    fromTextView.setText(json.getString("uploaded_by"));
-//                                    captionEditText.setText(json.getString("photo_caption"));
-//                                    sizeTextView.setText(json.getString("exphoto_width") + " * " + json.getString("exphoto_height"));
-//                                    dateTextView.setText(json.getString("create_date"));
-//                                    next_photo_id = json.getString("next_photo_id");
-//                                    prior_photo_id = json.getString("prior_photo_id");
-//                                    category_photo_id = json.getString("category_photo_id");
-//                                    Picasso.with(getActivity()).load(json.getString("image").replace("[", "%5B").replace("]", "%5D")).into(bigImageView);
-//
-//
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
-//
-//                            } else {
-//                                if (Utility.isConnectingToInternet()) {
-//                                    MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
-//
-//                                } else {
-//                                    Utility.showInternetAlert(getActivity());
-//                                }
-//                            }
-//                        }
-//                    });
-//                }
-//            }
-//        });
 
         return mView;
     }
@@ -316,81 +233,7 @@ public class PhotoDetailsFragment extends Fragment {
         fragmentTransaction.commit();
     }
 
-//    private void getImageDetails() {
-//        String url = Constant.PHOTO_DETAILS + Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID) + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
-////        Log.e(TAG, "Url: " + url);
-//        new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
-//            @Override
-//            public void callback(String url, JSONObject json, AjaxStatus status) {
-////                Log.e(TAG, "Response: " + json);
-//                if (json != null) {
-//                    try {
-//                        imageNameTextView.setText(json.getString("photo_file"));
-//                        fromTextView.setText(json.getString("uploaded_by"));
-//                        captionEditText.setText(json.getString("photo_caption"));
-//                        sizeTextView.setText(json.getString("exphoto_width") + " * " + json.getString("exphoto_height"));
-//                        dateTextView.setText(json.getString("create_date"));
-//                        next_photo_id = json.getString("next_photo_id");
-//                        prior_photo_id = json.getString("prior_photo_id");
-//                        category_photo_id = json.getString("category_photo_id");
-//                        Picasso.with(getActivity()).load(json.getString("image").replace("[", "%5B").replace("]", "%5D")).into(bigImageView);
-//
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                } else {
-//                    if (Utility.isConnectingToInternet()) {
-//                        MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
-//
-//                    } else {
-//                        Utility.showInternetAlert(getActivity());
-//                    }
-//                }
-//            }
-//        });
-//    }
 
-//    public void updateCaption(String caption) {
-//
-//
-//        mProgressBar.start();
-//        String url = Constant.PHOTO_CAPTION_UPDATE + category_photo_id + "&caption=" + caption.replace(" ", "%20") + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
-////        Log.e(TAG,"url: "+url);
-//        new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
-//            @Override
-//            public void callback(String url, JSONObject json, AjaxStatus status) {
-////                Log.e(TAG,"Response: "+json);
-//                if (json != null) {
-//                    try {
-//                        if (json.getString("status").equalsIgnoreCase("SUCCESS")) {
-//                            Toast.makeText(getActivity(), json.getString("message"), Toast.LENGTH_SHORT).show();
-//
-//                        } else {
-//                            Toast.makeText(getActivity(), json.getString("message"), Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                        mProgressBar.stop();
-//
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                        mProgressBar.stop();
-//                    }
-//
-//                } else {
-//                    mProgressBar.stop();
-//                    if (Utility.isConnectingToInternet()) {
-//                        MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
-//
-//                    } else {
-//                        Utility.showInternetAlert(getActivity());
-//                    }
-//                }
-//            }
-//        });
-//
-//    }
 
     public class PhotoDetailPagerAdapter extends FragmentPagerAdapter {
 
@@ -401,14 +244,22 @@ public class PhotoDetailsFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
 
-            return PhotoDetailRowFragment.newInstance(Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID));
+            Log.e("PHOTO_ID: ", String.valueOf(Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID)));
+
+
+
+
+//            return getUIData(Utility.getSharedPreferences(getActivity(), Constant.PRIOR_PHOTO_ID), position);
+            return new PhotoDetailRowFragment();
+
+
         }
 
         @Override
         public int getCount() {
 
 
-
+         //   -Integer.parseInt(Utility.getSharedPreferences(getActivity(), Constant.CURRENT_PAGE_INDEX))+2
 
             return Integer.parseInt(Utility.getSharedPreferences(getActivity(), Constant.PHOTO_COUNT));
         }
@@ -416,3 +267,5 @@ public class PhotoDetailsFragment extends Fragment {
     }
 
 }
+
+
