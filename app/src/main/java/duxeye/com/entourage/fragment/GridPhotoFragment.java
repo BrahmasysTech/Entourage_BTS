@@ -175,10 +175,12 @@ public class GridPhotoFragment extends Fragment {
                         public void onPhotoClick(PhotoGrid mPhotoGrid, int position) {
                             //Toast.makeText(getActivity(), mPhotoGrid.getPhotoId(), Toast.LENGTH_SHORT).show();
 
-                              Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
-                            Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
 
-                             Log.e("PhotoId:",mPhotoGrid.getPhotoId());
+
+                              Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
+                              Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
+
+                            Log.e("selected ID:",mPhotoGrid.getPhotoId());
                             photoDetailsFragment();
 
                         }
@@ -207,6 +209,8 @@ public class GridPhotoFragment extends Fragment {
                     try{
                         JSONArray jsonArray = json.getJSONArray("photo_list");
                         //((TextView) mView.findViewById(R.id.grid_photo_header_text)).setText(json.getString("category_name"));
+                       edit_category_id.clear();
+                        edit_category_id.commit();
                         for(int i=0; i<jsonArray.length(); i++){
 
                             edit_category_id.putString("id_" + i, jsonArray.getJSONObject(i).getString("category_photo_id"));

@@ -51,8 +51,8 @@ public class PhotoDetailRowFragment extends Fragment {
         mView = inflater.inflate(R.layout.row_photo_details, container, false);
         init();
 
-       // setImageAndText(getArguments().getString("photoID"));
-         setImageAndText();
+        setImageAndText(getArguments().getString("photoID"));
+        // setImageAndText();
 
         penImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,8 +138,6 @@ public class PhotoDetailRowFragment extends Fragment {
                 if (!hasFocus) {
 
 
-
-
                 }
             }
         });
@@ -176,8 +174,8 @@ public class PhotoDetailRowFragment extends Fragment {
     }
 
 
-    public void setImageAndText() {
-        String url = Constant.PHOTO_DETAILS + Utility.getSharedPreferences(getActivity(), Constant.PHOTO_ID) + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
+    public void setImageAndText(String Photo_ID) {
+        String url = Constant.PHOTO_DETAILS + Photo_ID + "&yearbook_id=" + Utility.getSharedPreferences(getActivity(), Constant.YEARBOOKID) + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
 //        Log.e(TAG, "Url: " + url);
         new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
             @Override
@@ -199,9 +197,12 @@ public class PhotoDetailRowFragment extends Fragment {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
+                    Utility.setSharedPreference(getActivity(), Constant.NEXT_PHOTO_ID,category_photo_id);
                     Utility.setSharedPreference(getActivity(), Constant.NEXT_PHOTO_ID, next_photo_id);
                     Utility.setSharedPreference(getActivity(), Constant.PRIOR_PHOTO_ID, prior_photo_id);
+                    //Log.e("NEXT:", next_photo_id);
+                  //  Log.e("Photo_id",category_photo_id);
+                 //   Log.e("BEFORE:",prior_photo_id);
 
                 } else {
                     if (Utility.isConnectingToInternet()) {

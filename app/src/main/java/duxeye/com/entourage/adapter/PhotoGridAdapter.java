@@ -93,10 +93,10 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.MyVi
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onPhotoClick(mPhotoGrid,position);
-                    Log.e("Position:",String.valueOf(position));
+                   // Log.e("Position:",String.valueOf(position));
                 }
             });
         }
     }
-
+   // E/RecyclerView: No adapter attached; skipping layout
 }
