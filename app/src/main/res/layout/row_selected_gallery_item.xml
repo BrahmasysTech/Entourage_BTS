@@ -19,6 +19,8 @@
                 android:id="@+id/iv_thumb"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                android:layout_centerInParent="true"
                 android:layout_weight="1" />
 
         </duxeye.com.entourage.customViews.SquareLayout>

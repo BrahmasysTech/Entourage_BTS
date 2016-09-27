@@ -68,6 +68,8 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.MyVi
 //            layoutParams.setFullSpan(true);
 //            holder.itemView.setLayoutParams(layoutParams);
 //        }
+
+
             holder.bind(mArrayList.get(position), position, onItemClickListener);
 
     }
@@ -93,7 +95,7 @@ public class PhotoGridAdapter extends RecyclerView.Adapter<PhotoGridAdapter.MyVi
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onPhotoClick(mPhotoGrid,position);
-                   // Log.e("Position:",String.valueOf(position));
+                 //Log.e("Position:",String.valueOf(position));
                 }
             });
         }

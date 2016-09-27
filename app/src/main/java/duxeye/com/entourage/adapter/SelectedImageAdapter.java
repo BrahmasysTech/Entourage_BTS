@@ -95,12 +95,10 @@ public class SelectedImageAdapter extends RecyclerView.Adapter<SelectedImageAdap
 //                    .error(R.drawable.no_media)
 //                    .into(thumbImageView);
 //
-            ApplicationController.getImageLoader().displayImage("file://" + uri,
-                    thumbImageView, new SimpleImageLoadingListener() {
+                     ApplicationController.getImageLoader().displayImage("file://" + uri,thumbImageView, new SimpleImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String imageUri, View view) {
-                            thumbImageView
-                                    .setImageResource(R.drawable.no_media);
+                            thumbImageView.setImageResource(R.drawable.no_media);
                             super.onLoadingStarted(imageUri, view);
                         }
                     });

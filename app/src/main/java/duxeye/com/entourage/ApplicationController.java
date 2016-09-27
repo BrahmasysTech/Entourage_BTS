@@ -2,6 +2,7 @@ package duxeye.com.entourage;
 
 import android.app.Application;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
@@ -13,6 +14,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.process.BitmapProcessor;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
@@ -25,6 +27,7 @@ public class ApplicationController extends Application {
     private static ApplicationController sInstance;
     private static ImageLoader imageLoader = null;
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,6 +35,10 @@ public class ApplicationController extends Application {
     }
 
     public static ImageLoader getImageLoader() {
+
+        BitmapFactory.Options resizeOptions = new BitmapFactory.Options();
+          resizeOptions.inSampleSize = 3;
+        resizeOptions.inScaled =true;
         if (imageLoader == null) {
             String CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/.temp_tmp";
             new File(CACHE_DIR).mkdirs();
@@ -41,6 +48,13 @@ public class ApplicationController extends Application {
             DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                     .cacheOnDisc(true).imageScaleType(ImageScaleType.EXACTLY_STRETCHED)
                     .delayBeforeLoading(100)
+                    .decodingOptions(resizeOptions)
+                    .postProcessor(new BitmapProcessor() {
+                        @Override
+                        public Bitmap process(Bitmap bitmap) {
+                            return Bitmap.createScaledBitmap(bitmap,300,300,false);
+                        }
+                    })
                     .bitmapConfig(Bitmap.Config.RGB_565).build();
 
             ImageLoaderConfiguration.Builder builder = new ImageLoaderConfiguration.Builder(sInstance.getBaseContext())

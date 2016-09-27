@@ -161,8 +161,8 @@ public class YearbookFragment extends Fragment {
         {
 
             mProgressBar.stop();
-          //  MyDialog.Yearbook_permissions("You are not allowed here \n because you don't have permissions...!", getActivity());
-          //  Toast.makeText(getActivity(), "You are not allowed...! ", Toast.LENGTH_SHORT).show();
+           // MyDialog.Yearbook_permissions("You are not allowed here \n because you don't have permissions...!", getActivity());
+           Toast.makeText(getActivity(), "You are not allowed...! ", Toast.LENGTH_SHORT).show();
         }
     }
 

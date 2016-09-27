@@ -78,6 +78,18 @@ public class HomeActivity extends AppCompatActivity implements ChangeTab {
                 ((ImageView) view.findViewById(R.id.img_tab)).setImageDrawable(getResources().getDrawable(tabIcons[pos]));
                 tabLayout.getTabAt(pos).setCustomView(view);
 
+//                if (pos== 3 )
+//                {
+//                    if (Utility.getBoolean(HomeActivity.this,Constant.ALLOW_YEARBOOK)) {
+//
+//                    }
+//                    else
+//                    {
+//
+//                        MyDialog.Yearbook_permissions("You are not allowed here \n because you don't have permissions...!", HomeActivity.this);
+//                    }
+//
+//                }
                 /***
                  * Refresh photo List
                  */
@@ -100,6 +112,20 @@ public class HomeActivity extends AppCompatActivity implements ChangeTab {
                 ((TextView) view.findViewById(R.id.tv_tab)).setTextColor(getResources().getColor(R.color.textColorTab));
                 ((ImageView) view.findViewById(R.id.img_tab)).setImageDrawable(getResources().getDrawable(utabIcons[pos]));
                 tabLayout.getTabAt(pos).setCustomView(view);
+
+//                if (pos==3)
+//                {
+//                    if (Utility.getBoolean(HomeActivity.this,Constant.ALLOW_YEARBOOK)) {
+//
+//                    }
+//                    else
+//                    {
+//
+//                        MyDialog.Yearbook_permissions("You are not allowed here \n because you don't have permissions...!", HomeActivity.this);
+//                    }
+//
+//                }
+
             }
 
             @Override

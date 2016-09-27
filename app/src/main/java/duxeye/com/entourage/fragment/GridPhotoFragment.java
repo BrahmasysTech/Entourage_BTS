@@ -10,6 +10,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,6 +54,7 @@ public class GridPhotoFragment extends Fragment {
     public static final String CATEGORY_ID = "category_id";
     SharedPreferences category_id;
     SharedPreferences.Editor edit_category_id;
+    PhotoGridAdapter mAdapter;
     public GridPhotoFragment() {
         // Required empty public constructor
     }
@@ -141,9 +143,34 @@ public class GridPhotoFragment extends Fragment {
 //            }
 //        });
 //        recyclerView.setLayoutManager(manager);
+
+//        photoGridView.setAdapter(new PhotoGridAdapter(getActivity(), mPhotoGridArrayList,new PhotoGridAdapter.ItemClickListener()
+//
+//                    {
+//                        @Override
+//                        public void onPhotoClick(PhotoGrid mPhotoGrid, int position) {
+//                            //Toast.makeText(getActivity(), mPhotoGrid.getPhotoId(), Toast.LENGTH_SHORT).show();
+//
+//
+//
+//                              Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
+//                              Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
+//
+//                            Log.e("selected ID:", mPhotoGrid.getPhotoId());
+//                            Log.e("selected Position:",String.valueOf(position));
+//                            photoDetailsFragment();
+//
+//                        }
+//                    }
+//
+//            ));
+
+        
         gridLayoutManagerVertical.setSpanSizeLookup(new MySpanSizeLookup(5, 1, 2));
         GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(),3);
         photoGridView.setLayoutManager(gridLayoutManagerVertical);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        photoGridView.setHasFixedSize(true);
         mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -156,37 +183,27 @@ public class GridPhotoFragment extends Fragment {
 
             }
         });
-            photoGridView.setLayoutManager(mLayoutManager);
-            photoGridView.setItemAnimator(new
 
-                            DefaultItemAnimator()
 
-            );
-        photoGridView.setAdapter(new PhotoGridAdapter(getActivity(), mPhotoGridArrayList, new PhotoGridAdapter.ItemClickListener() {
+        photoGridView.setLayoutManager(mLayoutManager);
+        photoGridView.setItemAnimator(new DefaultItemAnimator());
+      PhotoGridAdapter mAdapter=  new PhotoGridAdapter(getActivity(), mPhotoGridArrayList, new PhotoGridAdapter.ItemClickListener() {
             @Override
             public void onPhotoClick(PhotoGrid mPhotoGrid, int position) {
 
+                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
+                Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
+
+                Log.e("selected ID:", mPhotoGrid.getPhotoId());
+                Log.e("selected Position:",String.valueOf(position));
+                photoDetailsFragment();
+
             }
-        }));
-            photoGridView.setAdapter(new PhotoGridAdapter(getActivity(), mPhotoGridArrayList,new PhotoGridAdapter.ItemClickListener()
+        });
+        photoGridView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
+       // mAdapter.notifyDataSetChanged();
 
-                    {
-                        @Override
-                        public void onPhotoClick(PhotoGrid mPhotoGrid, int position) {
-                            //Toast.makeText(getActivity(), mPhotoGrid.getPhotoId(), Toast.LENGTH_SHORT).show();
-
-
-
-                              Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
-                              Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
-
-                            Log.e("selected ID:",mPhotoGrid.getPhotoId());
-                            photoDetailsFragment();
-
-                        }
-                    }
-
-            ));
 
 
 
@@ -257,3 +274,4 @@ public class GridPhotoFragment extends Fragment {
 
     }
 }
+

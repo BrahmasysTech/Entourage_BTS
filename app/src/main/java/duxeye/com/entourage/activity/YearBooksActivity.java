@@ -43,7 +43,8 @@ public class YearBooksActivity extends AppCompatActivity {
         mActivity = this;
         init();
 
-    }
+
+            }
 
     private void init() {
         ((TextView) findViewById(R.id.header_text)).setText("SELECT YEARBOOK");
