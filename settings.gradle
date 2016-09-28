@@ -1,1 +1,3 @@
 include ':app', ':library', ':libraryGesture'
+include ':core'
+include ':layouts'

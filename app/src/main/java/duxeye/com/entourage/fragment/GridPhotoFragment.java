@@ -1,7 +1,9 @@
 package duxeye.com.entourage.fragment;
 
 
+import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,7 +12,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,8 @@ import com.androidquery.callback.AjaxStatus;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.lucasr.twowayview.widget.DividerItemDecoration;
+import org.lucasr.twowayview.widget.TwoWayView;
 
 import java.util.ArrayList;
 
@@ -58,20 +62,22 @@ public class GridPhotoFragment extends Fragment {
     public GridPhotoFragment() {
         // Required empty public constructor
     }
-
+    TwoWayView mRecyclerView;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_grid_photos, container, false);
         init();
+        mRecyclerView =(TwoWayView) mView.findViewById(R.id.list);
+        mRecyclerView.setHasFixedSize(true);
         category_id = getActivity().getSharedPreferences(CATEGORY_ID, getActivity().MODE_PRIVATE);
         edit_category_id = category_id.edit();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             mPhotoGridArrayList.clear();
+                mPhotoGridArrayList.clear();
 //                edit_category_id.clear();
 //                edit_category_id.commit();
 //               // Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, "");
@@ -90,6 +96,8 @@ public class GridPhotoFragment extends Fragment {
         noImageFoundLayout.setVisibility(View.GONE);
         backButton = (ImageView) mView.findViewById(R.id.iv_back);
         mProgressBar = new CircularProgressBar(getActivity());
+
+
 
         mProgressBar.setCancelable(false);
         getImagesInCategory();
@@ -116,25 +124,32 @@ public class GridPhotoFragment extends Fragment {
 
     private void populatePhotoGrid(){
 
-//
+        final Drawable divider = getResources().getDrawable(R.drawable.divider);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(divider));
+
 //        RecyclerView photoGridView = (RecyclerView) mView.findViewById(R.id.photo_rv_category);
 //        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(),3);
 //        photoGridView.setLayoutManager(mLayoutManager);
 //        photoGridView.setItemAnimator(new DefaultItemAnimator());
-//        photoGridView.setAdapter(new PhotoGridAdapter(getActivity(),mPhotoGridArrayList, new PhotoGridAdapter.ItemClickListener() {
-//            @Override
-//            public void onPhotoClick(PhotoGrid mPhotoGrid,int position) {
-//                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID,mPhotoGrid.getPhotoId());
-//                Utility.setSharedPreference(getActivity(),Constant.CURRENT_PAGE_INDEX,""+position+"");
-//                photoDetailsFragment();
-//
-//            }
-//        }));
 
 
 
 
-        RecyclerView photoGridView = (RecyclerView) mView.findViewById(R.id.photo_rv_category);
+
+        mRecyclerView.setAdapter(new PhotoGridAdapter(getActivity(),mPhotoGridArrayList,mRecyclerView, new PhotoGridAdapter.ItemClickListener() {
+            @Override
+            public void onPhotoClick(PhotoGrid mPhotoGrid,int position) {
+                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID,mPhotoGrid.getPhotoId());
+                Utility.setSharedPreference(getActivity(),Constant.CURRENT_PAGE_INDEX,""+position+"");
+                photoDetailsFragment();
+
+            }
+        }));
+
+
+
+
+     //  RecyclerView photoGridView = (RecyclerView) mView.findViewById(R.id.photo_rv_category);
 //        GridLayoutManager manager = new GridLayoutManager(this, 3);
 //        manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
 //            @Override
@@ -165,44 +180,44 @@ public class GridPhotoFragment extends Fragment {
 //
 //            ));
 
-        
-        gridLayoutManagerVertical.setSpanSizeLookup(new MySpanSizeLookup(5, 1, 2));
-        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(),3);
-        photoGridView.setLayoutManager(gridLayoutManagerVertical);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        photoGridView.setHasFixedSize(true);
-        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-
-                if (position == 0) {
-                    return 2;
-                } else {
-                    return 1;
-                }
-
-            }
-        });
-
-
-        photoGridView.setLayoutManager(mLayoutManager);
-        photoGridView.setItemAnimator(new DefaultItemAnimator());
-      PhotoGridAdapter mAdapter=  new PhotoGridAdapter(getActivity(), mPhotoGridArrayList, new PhotoGridAdapter.ItemClickListener() {
-            @Override
-            public void onPhotoClick(PhotoGrid mPhotoGrid, int position) {
-
-                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
-                Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
-
-                Log.e("selected ID:", mPhotoGrid.getPhotoId());
-                Log.e("selected Position:",String.valueOf(position));
-                photoDetailsFragment();
-
-            }
-        });
-        photoGridView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-       // mAdapter.notifyDataSetChanged();
+//
+//        gridLayoutManagerVertical.setSpanSizeLookup(new MySpanSizeLookup(5, 1, 2));
+//        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(),3);
+//        mRecyclerView.setLayoutManager(gridLayoutManagerVertical);
+//        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        photoGridView.setHasFixedSize(true);
+//        mLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+//            @Override
+//            public int getSpanSize(int position) {
+//
+//                if (position == 0) {
+//                    return 2;
+//                } else {
+//                    return 1;
+//                }
+//
+//            }
+//        });
+//
+//
+//        photoGridView.setLayoutManager(mLayoutManager);
+//        photoGridView.setItemAnimator(new DefaultItemAnimator());
+//      PhotoGridAdapter mAdapter=  new PhotoGridAdapter(getActivity(), mPhotoGridArrayList, new PhotoGridAdapter.ItemClickListener() {
+//            @Override
+//            public void onPhotoClick(PhotoGrid mPhotoGrid, int position) {
+//
+//                Utility.setSharedPreference(getActivity(), Constant.PHOTO_ID, mPhotoGrid.getPhotoId());
+//                Utility.setSharedPreference(getActivity(), Constant.CURRENT_PAGE_INDEX, "" + position + "");
+//
+//                Log.e("selected ID:", mPhotoGrid.getPhotoId());
+//                Log.e("selected Position:",String.valueOf(position));
+//                photoDetailsFragment();
+//
+//            }
+//        });
+//        photoGridView.setAdapter(mAdapter);
+//        mAdapter.notifyDataSetChanged();
+//       // mAdapter.notifyDataSetChanged();
 
 
 

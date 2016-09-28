@@ -10,7 +10,15 @@
     <color name="bg_light_blue">#EBF5FF</color>
     <color name="textColor">#6C7A89</color>
     <color name="bgColor">#E9E9E9</color>
+    <color name="actionbar_color">#3FBA91</color>
 
+    <color name="titlestrip_background_color">#FFFFFF</color>
+    <color name="titlestrip_text_color">#FFFFFF</color>
+
+    <color name="item_border_color">#FFFFFF</color>
+    <color name="item_default_color">#FFFFFF</color>
+    <color name="item_pressed_color">#FFFFFF</color>
+    <color name="item_activated_color">#77CEEE</color>
     <array name="progress_colors">
         <item>@color/colorPrimaryDark</item>
     </array>
