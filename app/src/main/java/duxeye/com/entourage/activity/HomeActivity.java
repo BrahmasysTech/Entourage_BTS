@@ -1,8 +1,12 @@
 package duxeye.com.entourage.activity;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +25,7 @@ import duxeye.com.entourage.constant.Constant;
 import duxeye.com.entourage.customViews.CustomTextView;
 import duxeye.com.entourage.customViews.MyDialog;
 import duxeye.com.entourage.fragment.AccountInfoFragment;
+import duxeye.com.entourage.fragment.GridPhotoFragment;
 import duxeye.com.entourage.fragment.HomeFragment;
 import duxeye.com.entourage.fragment.PhotosFragment;
 import duxeye.com.entourage.fragment.UploadFragment;
@@ -96,13 +101,23 @@ public class HomeActivity extends AppCompatActivity implements ChangeTab {
                 if(pos == 1 && Utility.getBoolean(mActivity, Constant.isBackFromImageUploadDetails)){
                     try{
                         changeTabPosition(1);
-                        Utility.setBoolean(mActivity, Constant.isBackFromImageUploadDetails,false);
+                        Utility.setBoolean(mActivity, Constant.isBackFromImageUploadDetails, false);
 
                     }catch(Exception e) {
                         e.printStackTrace();
                     }
 
                 }
+                if (tab.getPosition()==1)
+                {
+                    android.support.v4.app.Fragment fragment = new PhotosFragment();
+                    android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+                    android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.content_frame, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+
             }
 
             @Override
@@ -130,6 +145,8 @@ public class HomeActivity extends AppCompatActivity implements ChangeTab {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+
+
 
             }
         });
