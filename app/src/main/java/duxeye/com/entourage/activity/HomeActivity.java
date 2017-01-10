@@ -108,6 +108,7 @@ public class HomeActivity extends AppCompatActivity implements ChangeTab {
                     }
 
                 }
+
                 if (tab.getPosition()==1)
                 {
                     android.support.v4.app.Fragment fragment = new PhotosFragment();
