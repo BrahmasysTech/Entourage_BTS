@@ -39,6 +39,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e3f69ae-1d0d-459f-9383-6e9bc1b0972c" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Entourage_BTS.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Entourage.iml" afterPath="$PROJECT_DIR$/Entourage.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Entourage_BTS.iws" />
@@ -104,9 +106,19 @@
       <file leaf-file-name="HomeActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/activity/HomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49916804">
-              <caret line="112" column="73" selection-start-line="112" selection-start-column="73" selection-end-line="112" selection-end-column="73" />
-              <folding />
+            <state vertical-scroll-proportion="0.19966722">
+              <caret line="100" column="61" selection-start-line="100" selection-start-column="61" selection-end-line="100" selection-end-column="61" />
+              <folding>
+                <element signature="e#6600#6627#0" expanded="true" />
+                <element signature="e#6960#6989#0" expanded="true" />
+                <element signature="e#7329#7358#0" expanded="true" />
+                <element signature="e#7699#7730#0" expanded="true" />
+                <element signature="e#8067#8096#0" expanded="true" />
+                <element signature="e#9004#9425#0" expanded="true" />
+                <element signature="e#9424#9425#0" expanded="true" />
+                <element signature="e#9488#9639#0" expanded="true" />
+                <element signature="e#9638#9639#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -5257,8 +5269,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/adapter/ViewPagerAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/constant/Constant.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/fragment/UploadedCompletedFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/activity/HomeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/Utility/Utility.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/activity/HomeActivity.java" />
       </list>
     </option>
   </component>
@@ -5276,8 +5288,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="36" />
-    <option name="y" value="30" />
+    <option name="x" value="-2" />
+    <option name="y" value="31" />
     <option name="width" value="1325" />
     <option name="height" value="745" />
   </component>
@@ -5706,11 +5718,23 @@
       <option name="project" value="LOCAL" />
       <updated>1484046867485</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="complete code of Entourage">
+      <created>1484046903380</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1484046903380</updated>
+    </task>
+    <task id="LOCAL-00003" summary="complete code of Entourage">
+      <created>1484047420593</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1484047420593</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="36" y="30" width="1325" height="745" extended-state="6" />
+    <frame x="-2" y="31" width="1325" height="745" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -6169,9 +6193,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/duxeye/com/entourage/activity/HomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49916804">
-          <caret line="112" column="73" selection-start-line="112" selection-start-column="73" selection-end-line="112" selection-end-column="73" />
-          <folding />
+        <state vertical-scroll-proportion="0.19966722">
+          <caret line="100" column="61" selection-start-line="100" selection-start-column="61" selection-end-line="100" selection-end-column="61" />
+          <folding>
+            <element signature="e#6600#6627#0" expanded="true" />
+            <element signature="e#6960#6989#0" expanded="true" />
+            <element signature="e#7329#7358#0" expanded="true" />
+            <element signature="e#7699#7730#0" expanded="true" />
+            <element signature="e#8067#8096#0" expanded="true" />
+            <element signature="e#9004#9425#0" expanded="true" />
+            <element signature="e#9424#9425#0" expanded="true" />
+            <element signature="e#9488#9639#0" expanded="true" />
+            <element signature="e#9638#9639#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
