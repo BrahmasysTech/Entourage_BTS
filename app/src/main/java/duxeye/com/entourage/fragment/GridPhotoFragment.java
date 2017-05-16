@@ -240,6 +240,7 @@ public class GridPhotoFragment extends Fragment {
                     mPhotoGridArrayList.clear();
                     try{
                         JSONArray jsonArray = json.getJSONArray("photo_list");
+                        Utility.setSharedPreference(getActivity(),Constant.PHOTO_COUNT,String.valueOf(jsonArray.length()));
                         //((TextView) mView.findViewById(R.id.grid_photo_header_text)).setText(json.getString("category_name"));
                        edit_category_id.clear();
                         edit_category_id.commit();

@@ -20,6 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/MyMaterialTheme"
         tools:replace="android:icon">
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="8dfcb756e80c493626b1f04bfa0f31b7da3c54ed" />
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"

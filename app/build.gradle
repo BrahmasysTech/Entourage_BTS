@@ -1,7 +1,24 @@
+// Crashlytics
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 repositories {
     mavenCentral()
+    maven { url 'https://maven.fabric.io/public' }
 }
+// Crashlytics
+
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
@@ -9,8 +26,8 @@ android {
         applicationId 'io.appery.project131794'
         minSdkVersion 16
         targetSdkVersion 23
-        versionName '3.1'
-        versionCode 4
+        versionName '3.3'
+        versionCode 6
     }
     buildTypes {
         release {
@@ -53,4 +70,22 @@ dependencies {
     compile 'it.sephiroth.android.library.imagezoom:imagezoom:2.2.5'
     compile 'testfairy:testfairy-android-sdk:1.+@aar'
     compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
+        transitive = true;
+    }
+}
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://www.testfairy.com/maven' }
+    }
+    dependencies {
+        classpath 'com.testfairy.plugins.gradle:testfairy:1.+'
+    }
+}
+apply plugin: 'testfairy'
+android {
+    testfairyConfig {
+        apiKey '597125a8e1ea2705bc84e906048ad82e14b5a8a2'
+    }
 }

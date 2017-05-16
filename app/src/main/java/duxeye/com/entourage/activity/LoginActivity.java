@@ -2,6 +2,7 @@ package duxeye.com.entourage.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,8 @@ import com.androidquery.callback.AjaxStatus;
 
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,17 +38,17 @@ public class LoginActivity extends AppCompatActivity {
     private CircularProgressBar mProgressBar;
     private CustomTextView registerTextView;
     private Button loginButton;
-
+    String DeviceToken,url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mActivity = this;
         init();
-//        setUpToolbar();
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        DeviceToken = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +76,26 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
 
                     mProgressBar.start();
-                    String url = Constant.LOGIN_URL + userName + "&password=" + password + "&device_platform=APPLE%2BIOS&device_type=foo&device_token=foo";
+                    if (userName.contains(" "))
+                    {
+                        try {
+                           //  = URLEncoder.encode(userName,"UTF-8");
+                            url = Constant.LOGIN_URL + URLEncoder.encode(userName,"UTF-8") + "&password=" + password + "&device_platform=ANDROID&device_type=foo&device_token="+DeviceToken;
+                        } catch (UnsupportedEncodingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else
+                    {
+                       url = Constant.LOGIN_URL + userName + "&password=" + password + "&device_platform=ANDROID&device_type=foo&device_token="+DeviceToken;
+                    }
+
 //                    Log.e(TAG, "Url: " + url);
 
                     AjaxCallback<JSONObject> mAjaxCallback = new AjaxCallback<JSONObject>() {
                         @Override
                         public void callback(String url, JSONObject json, AjaxStatus status) {
-//                            Log.e(TAG, "Response: " + json);
+                           Log.e(TAG, "Response: " + json);
 
                             if (json != null) {
                                 try {

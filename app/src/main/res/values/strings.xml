@@ -25,5 +25,6 @@
 
     <!-- Hard code text for Heading -->
     <string name="photo_details">PHOTO DETAILS</string>
+    <string name="FABRIC_API_KEY">597125a8e1ea2705bc84e906048ad82e14b5a8a2</string>
 
 </resources>

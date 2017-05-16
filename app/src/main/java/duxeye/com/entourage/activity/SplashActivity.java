@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.testfairy.TestFairy;
+import com.crashlytics.android.Crashlytics;
 
+import org.json.JSONObject;
+
+import io.fabric.sdk.android.Fabric;
 import duxeye.com.entourage.R;
 import duxeye.com.entourage.Utility.Utility;
 import duxeye.com.entourage.constant.Constant;
@@ -21,12 +26,16 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_splash);
         mActivity = this;
+
+
         btnLinearLayout = (LinearLayout) findViewById(R.id.btn_layout);
         btnLinearLayout.setVisibility(View.GONE);
 
-        TestFairy.begin(this, "ce01274fdf7eef6a5047d897452e7185739b2c05");
+        TestFairy.begin(this, "ad4be011f7705d15f1435382c854ace0b51d6c15");
 
 
         new Thread(new Runnable() {
@@ -64,7 +73,9 @@ public class SplashActivity extends AppCompatActivity {
 
     }
 
-
+    public void generateException(View view){
+        throw new NullPointerException("test crash");
+    }
     public void refreshButton(View view) {
         if (Utility.isConnectingToInternet()) {
             btnLinearLayout.setVisibility(View.GONE);

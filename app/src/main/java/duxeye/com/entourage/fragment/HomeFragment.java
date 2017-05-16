@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment implements CarouselCallback, NewsFeed
             new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
                 @Override
                 public void callback(String url, JSONObject json, AjaxStatus status) {
-                    //Log.e(TAG,"Response: "+json);
+                  Log.e(TAG,"Home Response: "+json);
                     if (json != null) {
                         try {
                             JSONArray mJsonArray = json.getJSONArray("carousel_items");
@@ -172,7 +172,7 @@ public class HomeFragment extends Fragment implements CarouselCallback, NewsFeed
             new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
                 @Override
                 public void callback(String url, JSONObject json, AjaxStatus status) {
-//                    Log.e(TAG,"Response: "+json);
+                    Log.e(TAG,"Response: "+json);
                     if (json != null) {
                         try {
                             JSONArray mJsonArray = json.getJSONArray("news_feed_items");
@@ -206,7 +206,9 @@ public class HomeFragment extends Fragment implements CarouselCallback, NewsFeed
                     } else {
                         mProgressBar.stop();
                         if (Utility.isConnectingToInternet()) {
-                            MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
+                            populateNewsFeedRecyclerView();
+                            MyDialog.iPhone("No news found\nPlease try again!", getActivity());
+                           // MyDialog.iPhone("No response from server\nPlease try again!", getActivity());
 
                         } else {
                             Utility.showInternetAlert(getActivity());
