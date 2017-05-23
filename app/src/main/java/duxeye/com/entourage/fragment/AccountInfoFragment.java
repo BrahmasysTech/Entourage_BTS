@@ -306,12 +306,12 @@ public class AccountInfoFragment extends Fragment {
 
             mProgressBar.start();
             String url = Constant.MEMBER_PERMISSION + mSearchSchool.getYearBookId() + "&credential_key=" + Utility.getSharedPreferences(getActivity(), Constant.CREDENTIALKEY);
-//            Log.e(TAG, "Url: " + url);
+            Log.e(TAG, "Url: " + url);
 
             new AQuery(getActivity()).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
                 @Override
                 public void callback(String url, JSONObject json, AjaxStatus status) {
-//                    Log.e(TAG, "Response : " + json);
+                   Log.e(TAG, "Response : " + json);
                     if (json != null) {
                         try {
 

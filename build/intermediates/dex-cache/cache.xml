@@ -1,2 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/transition/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-transition-25.3.1_758855f48a1b24ff3236ea7192fd8fe571783bd9.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/gson-2.2.4_6f9d7fd22a370a58cac8678b332d15f665380336.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.12/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="5c812ad0773ab307151802099a33575fa7bb270b">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.crashlytics.sdk.android-answers-1.3.12_ff0182516cc49a26a44a1be192c14f57163110b8.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-recyclerview-v7-25.3.1_4bbd163ca3b79f09531a21a7177249499ef7afed.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/it.sephiroth.android.library.imagezoom/imagezoom/2.2.5/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="406557a6f4369568e5515f8a3c66c97b23f21534">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/it.sephiroth.android.library.imagezoom-imagezoom-2.2.5_e923fc60e37fbd49abe16fa38f95fd4952280ca0.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.16/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="263c1c941f603469ecbaf8745f7b2d18ae85c5c0">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/io.fabric.sdk.android-fabric-1.3.16_6ab9d6bb9de695286a986ec6682d956ff93a5615.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-cardview-v7-25.3.1_fbb94f3a1509f576246abc91f0e5c1104125234b.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/Entourage_BTS/library/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="238f39aca7bf5dfd6fb8ca8fa7ec7fa2acf1f924">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/Entourage_BTS-library-unspecified_804314f251f7881310238d2a644ccccfee3141c4.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/picasso-2.5.2_e598158145328eaaf19e4f1e15a9e3b371fa2a6e.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/library-2.4.0_4ec80fb36b949e142cc7340897cb407096b811c8.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/libs/android-query-full.0.26.7.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="4055bed8ed6f6aa573fa3e7d979c66101c48e182">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/android-query-full.0.26.7_4fd5623af2bd57182310b9a97be81e434139c8db.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.2.4/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="8c8243677105d9c78cfbf553b55e256b3d4bea39">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.crashlytics.sdk.android-beta-1.2.4_341fa81205874a6b1b32ca63ab00b9a1b8972910.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.github.rey5137/material/1.2.4/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="8419191d25f4105772fc16b55a005a270cb4d4c8">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.github.rey5137-material-1.2.4_32a97b9bce173d26b4c0ef6444d9edff02724a1e.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-appcompat-v7-25.3.1_468aa331d2a9139cdbfe8defe8938fbf07a94276.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-support-fragment-25.3.1_45e5a5d90e47d59756b32bf07a28120aa92bf7a3.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/Entourage_BTS/layouts/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="ed77f950bd95c673de69ca5f1303ee8a0a2fcc03">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/Entourage_BTS-layouts-unspecified_6e255aeae7fc1f2ba3fff38d58c788fac3a858d4.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.4.0/5b72bf48563ea8410e650de14aa33ff69a3e8c35/okio-1.4.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="5b72bf48563ea8410e650de14aa33ff69a3e8c35">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/okio-1.4.0_fc3c93fd8a044f35744d3107bbbbd07acd3f5647.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.4.0/40340c0748190fe897baf7bffbc1b282734294e5/okhttp-2.4.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="40340c0748190fe897baf7bffbc1b282734294e5">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/okhttp-2.4.0_f4a4a18db210cfc060ad4fc78912203541c916ea.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.github.d-max/spots-dialog/0.4/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="f82b3f786bf4937ed1a1cc9a9a811e154813ba9a">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.github.d-max-spots-dialog-0.4_cc01012e45cd9453a681dbf70e39a22c142e64e6.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-animated-vector-drawable-25.3.1_5dce5066538effa458b10f3e181cd7e71bb5f758.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/libs/volley.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/volley_c5de7626800439b18debb17f9d11628115cd65e9.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-support-media-compat-25.3.1_0cdf1ffc0d1a2a5a139a105682b372557a4fa749.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-collections4/4.0/da217367fd25e88df52ba79e47658d4cf928b0d1/commons-collections4-4.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="da217367fd25e88df52ba79e47658d4cf928b0d1">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/commons-collections4-4.0_bc476f308e90211a08984940befa705131b2018f.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="0c3529d9491be892952749d252ae1defa9b1f937">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/cn.pedant.sweetalert-library-1.3_d5b5b4ae5af3c11b342f9e0bdb7d84e264644952.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/design/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-design-25.3.1_d4b86c25dcdb5dc4c6f330cd594b5ed32bc199ca.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-support-core-utils-25.3.1_b79e8fd89dfe0b648297f3b489da95fa5f063e75.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/libs/universal-image-loader-1.9.0.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="f667a2f4f27542fe11a6781f5f7ac572d27afcec">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/universal-image-loader-1.9.0_3515860653800e71f1e43087d60dd86a35414aeb.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.daimajia.slider/library/1.1.5/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="08962e03b6a954c65d4944e092879b7f5ee1208d">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.daimajia.slider-library-1.1.5_de8854b0eb3160d5a299ccb96197add62b83c26b.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-support-vector-drawable-25.3.1_d4d265c2823374f8cc1a05037ee594f4aa412b7b.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-support-core-ui-25.3.1_06d935bad47d8142198bc55b84804e20451f2443.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-support-compat-25.3.1_b238c459bf3f4ffa8d56d912a95248e5ba65922a.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/support-annotations-25.3.1_7f4cc0a555adbbf32912cf702bb1383bf12256e7.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.6.7/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="823bcb877cb90eb4ecbbc050d822ff5d84bb2db2">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.crashlytics.sdk.android-crashlytics-2.6.7_802696cd992f85c449a15f4d9bdce290de66af6d.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/Entourage_BTS/core/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="07cd34d0954720d10dfade11513c9a09c544f92d">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/Entourage_BTS-core-unspecified_10d3605329af179a89bdae0cbc433f7b4915ec14.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/testfairy/testfairy-android-sdk/1.4.17/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="5ba39b6e1051ed44e2b8ce605a663d829631e376">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/testfairy-testfairy-android-sdk-1.4.17_e0e8f39dc82f0940c579b479084efd1d6ffcc1c7.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-s3/2.2.22/40fe82092e0ae3ca549b132a1e7e876807525176/aws-android-sdk-s3-2.2.22.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="40fe82092e0ae3ca549b132a1e7e876807525176">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/aws-android-sdk-s3-2.2.22_93b818e6f496d70cefe741c41717087c55175c42.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.3.1/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-25.3.1_760a017a35e5edcb30c5cb70685e80797526bf3d.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.16/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="844efef744581e604ea77683555271ebbd61d871">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.crashlytics.sdk.android-crashlytics-core-2.3.16_a1bf25141b620beadd1a2f140c8b97d3c5c3cb5c.jar" />
+    </item>
+    <item
+        jar="/Users/apple/.gradle/caches/modules-2/files-2.1/com.amazonaws/aws-android-sdk-core/2.2.22/c6789de00db9d1f93faec881fa0c1f5960fb8a15/aws-android-sdk-core-2.2.22.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="c6789de00db9d1f93faec881fa0c1f5960fb8a15">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/aws-android-sdk-core-2.2.22_0b91a96612ae3c989a0c3ffe4e0de2db48fc5ef0.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="57487745ce450899f9f250d5ae5c092a682cd041">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/com.pnikosis-materialish-progress-1.0_05e0860aa586e4005a7e960342af06b40b66a461.jar" />
+    </item>
+    <item
+        jar="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/exploded-aar/Entourage_BTS/libraryGesture/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="25.0.2"
+        sha1="8e13712b6f70080d79beee29ed8853c0d023d796">
+        <dex dex="/Users/apple/Desktop/BrahmasysAndroid/Entourage_BTS/app/build/intermediates/pre-dexed/release/Entourage_BTS-libraryGesture-unspecified_c38095983bbbe9dcd901cd075b9abd553ee0bb2b.jar" />
+    </item>
+
+</items>

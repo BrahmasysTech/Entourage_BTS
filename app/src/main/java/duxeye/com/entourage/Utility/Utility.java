@@ -78,7 +78,7 @@ public class Utility {
 
     public static boolean getBoolean(Context context, String name) {
         SharedPreferences settings = context.getSharedPreferences(ENTOURAGE_DATA, 0);
-        return settings.getBoolean(name, false);
+        return settings.getBoolean(name, true);
     }
 
     public static boolean emailValidator(String email) {

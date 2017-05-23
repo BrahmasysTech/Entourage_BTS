@@ -86,7 +86,7 @@ public class YearBooksActivity extends AppCompatActivity {
             new AQuery(mActivity).ajax(url, JSONArray.class, new AjaxCallback<JSONArray>() {
                 @Override
                 public void callback(String url, JSONArray json, AjaxStatus status) {
-                    //Log.e(TAG, "Response : " + json);
+                     Log.e(TAG, "Response : " + json);
                     if (json != null) {
                         try {
                             if (json.length() > 0) {
@@ -134,7 +134,7 @@ public class YearBooksActivity extends AppCompatActivity {
             new AQuery(mActivity).ajax(url, JSONObject.class, new AjaxCallback<JSONObject>() {
                 @Override
                 public void callback(String url, JSONObject json, AjaxStatus status) {
-//                    Log.e(TAG, "Response : " + json);
+                     Log.e(TAG, "Response : " + json);
                     if (json != null) {
                         try {
 

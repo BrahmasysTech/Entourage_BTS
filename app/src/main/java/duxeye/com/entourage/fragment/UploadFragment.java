@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -84,6 +85,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
     private SelectedImageAdapter adapter;
     private String parentUUDID;
     private ImageLoader imageLoader;
+    TextView permission_text;
+    LinearLayout upload_layout;
 //    private HorizontalProgressBar progressBar;
 
     private android.app.Dialog mDialog;
@@ -101,12 +104,19 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
 
 //        initImageLoader();
 
+        if (Utility.getBoolean(getActivity(), Constant.ALLOW_UPLOAD)) {
+           upload_layout.setVisibility(View.VISIBLE);
+        } else {
+            upload_layout.setVisibility(View.GONE);
+           permission_text.setVisibility(View.VISIBLE);
+        }
         return mView;
     }
 
     private void init() {
         ((TextView) mView.findViewById(R.id.upload_header_text)).setText("UPLOAD PHOTO");
-
+        permission_text     = (TextView) mView.findViewById(R.id.upload_permissions);
+        upload_layout       = (LinearLayout) mView.findViewById(R.id.upload_layout);
         createCategoryButton = (Button) mView.findViewById(R.id.btn_create_category);
         createCategoryButton.setOnClickListener(this);
 
@@ -204,7 +214,8 @@ public class UploadFragment extends Fragment implements View.OnClickListener {
                         if (Utility.getBoolean(getActivity(), Constant.ALLOW_UPLOAD)) {
                             selectImageFromGalleryFragment();
                         } else {
-                            MyDialog.iPhone("You are not allowed to upload photo!", getActivity());
+                            MyDialog.iPhone("you don't have permissions to upload photo! ", getActivity());
+                          //  MyDialog.iPhone("You are not allowed to upload photo! ", getActivity());
                         }
 
                     }
